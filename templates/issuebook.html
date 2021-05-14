@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Issue Book</title>
+	
+	<style>
+		body{
+		 background-image: url('/static/1749.jpg');
+		 background-repeat: no-repeat;
+			 background-attachment: fixed;
+			 background-size: cover;
+	   }
+	   *{
+	margin: 0;
+	padding: 0;
+}
+
+div.main{
+	width: 400px;
+	margin: 100px auto 0px auto;
+}
+h2{
+	text-align: center;
+	padding: 20px;
+	font-family: sans-serif;
+	
+}
+div.register{
+	background-color:rgba(0,0,0,0.5);
+	width:100%;
+	font-size: 18px;
+	border-radius: 10px;
+	border:1px soid rgba(255,255,255,0.3);
+	box-shadow:2px 2px 15px
+	rgba(0,0,0,0.3);
+	color:#fff;
+}
+form#register{
+	margin: 40px;
+	
+}
+label{
+	font-family: sans-serif;
+	font-size: 18px;
+}
+input#name{
+	width: 300px;
+	border:1px solid #ddd;
+	border-radius: 3px;
+	outline: 0;
+	padding: 7px;
+	background-color: #fff;
+	box-shadow:inset 1px 1px 5px
+	rgba(0,0,0,0.3);
+}
+   </style>
+</head>
+<body>
+<div class="main">
+	<div class="register">
+	<h2>ISSUE BOOKS</h2>
+	<form id="register" method="post">
+	<label>Book id : </label>
+	<br>
+	<input type="text" name="bid" id="bid">
+	<br><br>
+	<label>Issued To : </label>
+	<br>
+	<input type="text" name="iname" id="iname">
+	<br><br>
+	<input type="submit" id="submit" value="Submit">
+	<br><br>
+	<button type= "submit" formaction="index.html">HOME</button>
+	<br><br>
+	<br><br>
+	</form>
+	
+	
+	
+	</div>
+</div>	
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+	$(function() {
+            $("#submit").click(function() {
+                $.ajax({
+                    url: "http://127.0.0.1:8080/issue/book",
+                    type: "POST",
+                    dataType: 'json',
+		    		header: {'Access-Control-Allow-Origin': '*'},
+                    data: $('#register').serialize(),
+                    success: function(response) {
+						//window.location.reload();
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+	});
+</script>
+</body>
+</html>

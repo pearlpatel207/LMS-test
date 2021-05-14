@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Books</title>
+	<!--<link rel="stylesheet" href="/static/styles.css" type="text/css">-->
+	<style>
+		body{
+		 background-image: url('/static/1749.jpg');
+		 background-repeat: no-repeat;
+			 background-attachment: fixed;
+			 background-size: cover;
+	   }
+       *{
+	margin: 0;
+	padding: 0;
+}
+div.main{
+	width: 400px;
+	margin: 100px auto 0px auto;
+}
+h2{
+	text-align: center;
+	padding: 20px;
+	font-family: sans-serif;
+	
+}
+div.register{
+	background-color:rgba(0,0,0,0.5);
+	width:100%;
+	font-size: 18px;
+	border-radius: 10px;
+	border:1px soid rgba(255,255,255,0.3);
+	box-shadow:2px 2px 15px
+	rgba(0,0,0,0.3);
+	color:#fff;
+}
+form#register{
+	margin: 40px;
+	
+}
+label{
+	font-family: sans-serif;
+	font-size: 18px;
+}
+input#name{
+	width: 300px;
+	border:1px solid #ddd;
+	border-radius: 3px;
+	outline: 0;
+	padding: 7px;
+	background-color: #fff;
+	box-shadow:inset 1px 1px 5px
+	rgba(0,0,0,0.3);
+}
+   </style>
+</head>
+<body>
+<div class="main">
+	<div class="register">
+	<h2>VIEW BOOKS</h2>
+    <div id='tablePrint'>
+	
+	
+	
+
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+    var Table = "<table id='libt' border='2' align='center' cellpadding='5' cellspacing='5' class='center'>";
+    Table+="<tr><th> Book ID </th><th> Title </th><th> Author </th><th> Status </th></tr>";
+        $(function() {
+    $.ajax({
+        url: '/viewB',
+        type: 'GET',
+        success: function(response) {
+            console.log(response, response['b'][0]['0'])
+            for (i=0; i<response['leng']; i++){
+                Table+="<tr><td>"+String(response['b'][i]['0'])+"</td><td>"+String(response['b'][i]['1'])+"</td><td>"+String(response['b'][i]['2'])+"</td><td>"+String(response['b'][i]['3'])+"</td></tr>";
+            }
+            Table+="</table>";
+            document.getElementById('tablePrint').innerHTML = Table;
+        },
+        error: function(error) {
+            console.log(error);
+        }
+
+    });
+});
+</script>
+</div>
+<br></br>
+<p style="background-color:rgba(17, 223, 195, 0.418);color:rgb(255, 255, 255);text-align:center;"><a href='index.html'><span>Home</span></a></p>
+<br></br>
+</div>	
+</div>	
+
+</body>
+</html>
